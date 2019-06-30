@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('calculator');
+    return view('calculator', compact('result'));
 });
 
 Route::post("calculate", "CalculatorController@calculate");

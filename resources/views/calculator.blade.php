@@ -4,19 +4,20 @@
 	<title>Calculator</title>
 </head>
 <body>
-
+	
 	<form method="POST" action="calculate">
 		@method('POST')
 		@csrf()
 
-		<input type="text" name="number" required>
-		<input type="text" name="numberSecond">
+		<input type="number" name="number" required>
+		<input type="number" name="numberSecond" 
+			value="<?= (isset($result) && $result!= null)? $result : 0;?>">
 		
 		<select name="operation" required>
-			<option 'Adder'>Sum</option>
-			<option 'Subtracter'>Subtract</option>
-			<option 'Multiplyer'>Multiply</option>
-			<option 'Divider'>Divide</option>
+			<option value="Adder">Sum</option>
+			<option value="Subtracter">Subtract</option>
+			<option value="Multiplyer">Multiply</option>
+			<option value="Divider">Divide</option>
 		</select>
 
 		<input type="submit" value="Calculate">

@@ -2,7 +2,7 @@
 
 namespace App\Http\Interfaces;
 
-class OperatorInterface
+interface OperatorInterface
 {
 	public function operate (int $number, int $result);
 }

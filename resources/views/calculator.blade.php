@@ -10,12 +10,13 @@
 		@csrf()
 
 		<input type="text" name="number" required>
+		<input type="text" name="numberSecond">
 		
 		<select name="operation" required>
-			<option 'sum'>Sum</option>
-			<option 'subtract'>Subtract</option>
-			<option 'multiply'>Multiply</option>
-			<option 'divide'>Divide</option>
+			<option 'Adder'>Sum</option>
+			<option 'Subtracter'>Subtract</option>
+			<option 'Multiplyer'>Multiply</option>
+			<option 'Divider'>Divide</option>
 		</select>
 
 		<input type="submit" value="Calculate">

@@ -1,3 +1,6 @@
+
+# Calculator
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
@@ -7,65 +10,71 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## Installation
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Server Requirements**
+The Laravel framework has a few system requirements. All of these requirements are satisfied by the Laravel Homestead virtual machine, so it's highly recommended that you use Homestead as your local Laravel development environment.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+However, if you are not using Homestead, you will need to make sure your server meets the following requirements:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+PHP >= 7.1.3
+BCMath PHP Extension
+Ctype PHP Extension
+JSON PHP Extension
+Mbstring PHP Extension
+OpenSSL PHP Extension
+PDO PHP Extension
+Tokenizer PHP Extension
+XML PHP Extension
 
-## Learning Laravel
+**Procedure**
+Make a folder than clone or download the content of the repository on local environment
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    mkdir calculator
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1400 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+  Change directory to the project folder
 
-## Laravel Sponsors
+    cd calculator
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Set up the component of the project required by the framework 
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
+    composer install
 
-## Contributing
+It may be required to set a series of serial key.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    php artisan key:generate
 
-## Security Vulnerabilities
+This project does not require any seeding or migration. nor the installation of npm and the set up of node_modules.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+If Valet is in use run to following command to start the web server
+
+    php artisan serve
+
+## How does it work
+
+In this Laravel project the index page routes to a GET request to localhost at port 8000.
+
+*[http://127.0.0.1:8000/](http://127.0.0.1:8000/)*
+and
+*[http://127.0.0.1:8000/calculator](http://127.0.0.1:8000/calculator)*
+
+<p align="center"><img src="https://i.ibb.co/tp6yWFc/Screenshot-from-2019-07-02-00-15-02.png" alt="Screenshot-from-2019-07-02-00-15-02" border="0"></p>
+
+
+The calculator requires 1 or 2 field to be filled and an operation to be selected.
+The default value is set to 0 and it is possible to edit both number for the first calculation.
+From the second calculation onwards the current number (*$result*) will be automatically updated.
+
+The form hit the method calculato of the *CalculatorController* with a POST request.
+after validating the input, the controller set the right operation via the use of the *OperatorInterface* and does the calculation using the *operate()* method.
+
+## Test
+Several tests are available in the *tests* directory
+the result is visible by running the following command from the root of the project.
+
+    vendor/bin/phpunit
+
+<p align="center"><img src="https://i.ibb.co/sJZWt82/Screenshot-from-2019-07-02-00-15-49.png" alt="Screenshot-from-2019-07-02-00-15-49" border="0"></p>
 
 ## License
 

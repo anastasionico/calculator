@@ -10,23 +10,30 @@ use App\Http\Interfaces\OperatorInterface;
 
 class CalculatorController extends Controller
 {
-	protected $result = 0;
+	public $result = 0;
 
 	protected $operation;
 
+    public function index($value='')
+    {
+       return view('calculator')->with('result', $this->getResult());
+    }
+
     public function calculate (Request $request)
     {
+    	
         $request->validate([
-            'number' => ['required','integer'],
-            'numberSecond' => ['integer'],
+            'result' => ['required','integer'],
+            'number' => ['integer'],
             'operation' => ['required','string'],
         ]);
 
+
         $className = 'App\\Http\\Operations\\' . $request->operation;
-        
         $this->setOperation(new $className);
-		$this->work($request->number, $request->numberSecond);
-        
+
+		$this->work($request->result, $request->number);
+		
         return view('calculator')->with('result', $this->getResult());
     }
 
@@ -35,12 +42,10 @@ class CalculatorController extends Controller
     	$this->operation = $operation;
     }
 
-    private function work () 
+    private function work (int $result, int $number) 
     {
-        foreach (func_get_args() as $number) {
-            $this->result = $this->operation->operate($number, $this->result);
-        }
-    }
+        $this->result = $this->operation->operate($result, $number);
+	}
 
     public function getResult () 
     {

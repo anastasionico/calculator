@@ -11,9 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('calculator', compact('result'));
-});
+// Route::get('/', function () {
+
+//     return view('calculator', compact('result'));
+// });
+// Route::get('/calculator', function () {
+//     return view('calculator', compact('result'));
+// });
+
+
+Route::get("/", "CalculatorController@index");
+Route::get("calculator", "CalculatorController@index");
 
 Route::post("calculate", "CalculatorController@calculate");
+
+
 

@@ -26,8 +26,6 @@ class CalculatorController extends Controller
             'operation' => ['required','string'],
         ]);
 
-        $calculator = new Calculator();
-        
         $operationClass = 'App\\Http\\Operations\\' . $request->operation;
         $this->setOperation(new $operationClass);
 
@@ -46,7 +44,7 @@ class CalculatorController extends Controller
         $this->result = $this->operation->operate($result, $number);
 	}
 
-    public function getResult() :int
+    protected function getResult() :int
     {
         return $this->result;
     }

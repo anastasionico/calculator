@@ -6,9 +6,8 @@ use App\Http\Interfaces\OperatorInterface;
 
 class Adder implements OperatorInterface
 {
-    public function operate (int $result, int $number) 
+    public function operate(int $result, int $number) :int
     {
-    	
     	return $result + $number;
     }
 }

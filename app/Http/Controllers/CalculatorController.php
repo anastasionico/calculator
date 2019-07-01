@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Calculator;
-use App\Http\Operations\Adder;
 use App\Http\Interfaces\OperatorInterface;
 
 
 class CalculatorController extends Controller
 {
-	public $result = 0;
-
+	protected $result = 0;
 	protected $operation;
 
     public function index($value='')
@@ -19,7 +17,7 @@ class CalculatorController extends Controller
        return view('calculator')->with('result', $this->getResult());
     }
 
-    public function calculate (Request $request)
+    public function calculate(Request $request)
     {
     	
         $request->validate([
@@ -28,26 +26,27 @@ class CalculatorController extends Controller
             'operation' => ['required','string'],
         ]);
 
+        $calculator = new Calculator();
+        
+        $operationClass = 'App\\Http\\Operations\\' . $request->operation;
+        $this->setOperation(new $operationClass);
 
-        $className = 'App\\Http\\Operations\\' . $request->operation;
-        $this->setOperation(new $className);
-
-		$this->work($request->result, $request->number);
+		$this->operate($request->result, $request->number);
 		
         return view('calculator')->with('result', $this->getResult());
     }
 
-    private function setOperation (OperatorInterface $operation)
+    private function setOperation(OperatorInterface $operation)
     {
     	$this->operation = $operation;
     }
 
-    private function work (int $result, int $number) 
+    private function operate(int $result, int $number) 
     {
         $this->result = $this->operation->operate($result, $number);
 	}
 
-    public function getResult () 
+    public function getResult() :int
     {
         return $this->result;
     }
